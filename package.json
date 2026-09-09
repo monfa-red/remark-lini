@@ -1,5 +1,5 @@
 {
-	"name": "remark-lini",
+	"name": "remark-lini-lang",
 	"version": "0.1.0",
 	"description": "remark plugin that compiles ```lini fences in Markdown and MDX to inline SVG at build time.",
 	"license": "MIT",

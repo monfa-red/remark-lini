@@ -7,8 +7,8 @@
  * not shelled out to — installing this package is the whole toolchain.
  *
  * ```js
- * import { remarkLini } from 'remark-lini';
- * unified().use(remarkParse).use(remarkLini).use(remarkRehype, { allowDangerousHtml: true });
+ * import { remarkLini } from 'remark-lini-lang';
+ * unified().use(remarkParse).use(remarkLini).use(remarkRehype);
  * ```
  *
  * Anywhere remark runs, this runs: Docusaurus, Next and MDX, Gatsby, Astro (via

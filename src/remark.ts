@@ -27,8 +27,8 @@ interface VFile {
  * A remark plugin that compiles every ```` ```lini ```` block to inline SVG.
  *
  * ```js
- * import { remarkLini } from 'remark-lini';
- * unified().use(remarkParse).use(remarkLini).use(remarkRehype, { allowDangerousHtml: true });
+ * import { remarkLini } from 'remark-lini-lang';
+ * unified().use(remarkParse).use(remarkLini).use(remarkRehype);
  * ```
  */
 export function remarkLini(options: LiniOptions = {}) {

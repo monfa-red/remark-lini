@@ -2,7 +2,7 @@
 // the README tells a site to register it. Nothing here is decorative — every
 // option is the minimum that lets `docusaurus build` produce pages.
 
-import { remarkLini } from 'remark-lini';
+import { remarkLini } from 'remark-lini-lang';
 
 export default {
 	title: 'remark-lini fixture',

@@ -2,13 +2,16 @@
 
 **` ```lini ` fences in Markdown and MDX, compiled to inline SVG at build time.**
 
+> Published on npm as **`remark-lini-lang`** — npm rejects `remark-lini` as too
+> close to `remark-lint`.
+
 [Lini](https://lini.rs) is one small language for diagrams: flowcharts, charts,
 sequences, mindmaps, trees, ER schemas, circuit schematics and dimensioned
 technical drawings all come out of the same fence. This plugin draws them
 wherever [remark](https://github.com/remarkjs/remark) runs.
 
 ```
-npm install remark-lini
+npm install remark-lini-lang
 ```
 
 The compiler is linked as a WebAssembly module, not shelled out to — installing
@@ -22,25 +25,25 @@ import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
-import { remarkLini } from 'remark-lini';
+import { remarkLini } from 'remark-lini-lang';
 
 const html = await unified()
   .use(remarkParse)
   .use(remarkLini)
-  .use(remarkRehype, { allowDangerousHtml: true })
-  .use(rehypeStringify, { allowDangerousHtml: true })
+  .use(remarkRehype)
+  .use(rehypeStringify)
   .process('```lini\ncat -> dog -> bird\n```');
 ````
 
-The plugin replaces each fence with raw HTML, so whatever runs after it has to
-let raw HTML through — that is the `allowDangerousHtml` on both lines above.
-Every framework below does this for you.
+Each fence is replaced with parsed elements rather than a string of raw HTML, so
+no `allowDangerousHtml` anywhere and nothing to re-parse. That is also what makes
+it work under MDX, which has no raw HTML at all.
 
 ### Docusaurus
 
 ```js
 // docusaurus.config.js
-import { remarkLini } from 'remark-lini';
+import { remarkLini } from 'remark-lini-lang';
 
 export default {
   presets: [['classic', { docs: { remarkPlugins: [remarkLini] } }]],
@@ -52,7 +55,7 @@ export default {
 ```js
 // next.config.mjs
 import createMDX from '@next/mdx';
-import { remarkLini } from 'remark-lini';
+import { remarkLini } from 'remark-lini-lang';
 
 export default createMDX({ options: { remarkPlugins: [remarkLini] } })({
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
@@ -63,7 +66,7 @@ export default createMDX({ options: { remarkPlugins: [remarkLini] } })({
 
 ```js
 // gatsby-config.js
-const { remarkLini } = require('remark-lini');
+const { remarkLini } = require('remark-lini-lang');
 
 module.exports = {
   plugins: [{ resolve: 'gatsby-plugin-mdx', options: { mdxOptions: { remarkPlugins: [remarkLini] } } }],
@@ -85,8 +88,8 @@ drew it. The fence's info string chooses:
 | ` ```lini ` | the figure, with the source one click away |
 | ` ```lini figure-only ` | the figure alone |
 | ` ```lini code-only ` | the source alone, highlighted, never compiled |
-| ` ```lini figure code ` | both, stacked, no toggle |
-| ` ```lini code figure ` | both, source first |
+| ` ```lini figure-code ` | both, stacked, no toggle |
+| ` ```lini code-figure ` | both, source first, no toggle |
 
 ## Images
 
@@ -107,7 +110,7 @@ To own the styling yourself:
 .use(remarkLini, { bundledCss: false })
 ```
 
-…and ship the sheet — `remark-lini/remark-lini.css` for the figure wrapper, plus
+…and ship the sheet — `remark-lini-lang/remark-lini.css` for the figure wrapper, plus
 `liniCss()` if you want the syntax-highlighting palette bound to the same
 compiler that draws the figures.
 
