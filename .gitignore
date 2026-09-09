@@ -1,0 +1,18 @@
+node_modules
+dist
+*.tgz
+.DS_Store
+
+# Docusaurus' generated site output and caches.
+tests/site/build
+tests/site/.docusaurus
+
+# Regenerated on install. Nothing here pins a version the registry does not
+# already resolve, and a library is better tested against the newest of them.
+# The fixture site floats for the same reason: a Docusaurus or MDX release that
+# breaks a figure should turn CI red the week it lands, not the day someone
+# gets around to bumping a pin.
+package-lock.json
+
+# Written by the pipeline test when it hands the binary the same source.
+tests/fixtures/fence.lini

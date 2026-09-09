@@ -1,0 +1,33 @@
+# Figures
+
+Prose above the first fence — and an em dash, so the smart-punctuation control
+below has something to find.
+
+```lini
+cat -> dog -> bird
+```
+
+Every arrangement the info string offers, one after another.
+
+```lini figure-only
+|oval| "figure-only"
+```
+
+```lini code-only
+|oval| "never compiled"
+```
+
+```lini figure-code
+|oval| "figure first"
+```
+
+```lini code-figure
+|oval| "code first"
+```
+
+A local image, resolved against this file's own directory and handed to the
+compiler as bytes.
+
+```lini
+|image| { src: "logo.svg"; width: 40; height: 40 }
+```

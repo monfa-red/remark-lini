@@ -1,0 +1,40 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  # The plugin against the compiler: every fence must draw what the `lini`
+  # binary draws. `LINI_BIN_REQUIRED=1` turns the test's local skip into a
+  # failure, so a missing binary reports as a missing binary rather than as a
+  # green run that compared nothing.
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: actions/checkout@v5
+        with:
+          repository: monfa-red/lini
+          path: .lini
+      - run: cargo build --release --manifest-path .lini/Cargo.toml
+      - run: npm install
+      - run: npm run build
+      - run: LINI_BIN_REQUIRED=1 LINI_BIN=$PWD/.lini/target/release/lini node --test tests/pipeline.test.mjs
+
+  # The other half: a real Docusaurus build, because MDX is where a plugin that
+  # emits markup actually breaks — no raw HTML, and `pre` belongs to the host.
+  site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install
+      - run: npm run test:site

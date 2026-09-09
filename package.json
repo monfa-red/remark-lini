@@ -1,0 +1,66 @@
+{
+	"name": "remark-lini",
+	"version": "0.1.0",
+	"description": "remark plugin that compiles ```lini fences in Markdown and MDX to inline SVG at build time.",
+	"license": "MIT",
+	"homepage": "https://lini.rs",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/monfa-red/remark-lini.git"
+	},
+	"bugs": "https://github.com/monfa-red/remark-lini/issues",
+	"keywords": [
+		"remark",
+		"remark-plugin",
+		"unified",
+		"mdx",
+		"docusaurus",
+		"diagram",
+		"diagrams-as-code",
+		"svg",
+		"markdown",
+		"lini"
+	],
+	"type": "module",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
+		},
+		"./core": {
+			"types": "./dist/core.d.ts",
+			"default": "./dist/core.js"
+		},
+		"./remark-lini.css": "./remark-lini.css",
+		"./package.json": "./package.json"
+	},
+	"files": [
+		"dist",
+		"remark-lini.css",
+		"README.md",
+		"LICENSE"
+	],
+	"scripts": {
+		"build": "tsc",
+		"prepack": "npm run build",
+		"test": "npm run build && node --test tests/pipeline.test.mjs",
+		"test:site": "npm pack && cd tests/site && npm install && npm install --no-save --strict-peer-deps ../../remark-lini-*.tgz && npm run build && node verify.mjs build"
+	},
+	"dependencies": {
+		"hast-util-from-html": "^2.0.3",
+		"lini-wasm": "^1.0.5"
+	},
+	"devDependencies": {
+		"@types/node": "^26.4.1",
+		"hast-util-to-html": "^9.0.5",
+		"rehype-stringify": "^10.0.0",
+		"remark-parse": "^11.0.0",
+		"remark-rehype": "^11.1.0",
+		"typescript": "^5.9.3",
+		"unified": "^11.0.5"
+	},
+	"engines": {
+		"node": ">=22.12.0"
+	}
+}

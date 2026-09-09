@@ -1,0 +1,23 @@
+{
+	"name": "remark-lini-fixture",
+	"private": true,
+	"scripts": {
+		"build": "docusaurus build",
+		"verify": "node verify.mjs build"
+	},
+	"dependencies": {
+		"@docusaurus/core": "^3.9.2",
+		"@docusaurus/preset-classic": "^3.9.2",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1"
+	},
+	"browserslist": {
+		"production": [
+			">0.5%",
+			"not dead"
+		],
+		"development": [
+			"last 1 chrome version"
+		]
+	}
+}
