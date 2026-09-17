@@ -1,6 +1,6 @@
 {
 	"name": "remark-lini-lang",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "remark plugin that compiles ```lini fences in Markdown and MDX to inline SVG at build time.",
 	"license": "MIT",
 	"homepage": "https://lini.rs",
@@ -49,7 +49,7 @@
 	},
 	"dependencies": {
 		"hast-util-from-html": "^2.0.3",
-		"lini-wasm": "^1.0.5"
+		"lini-wasm": "^1.0.6"
 	},
 	"devDependencies": {
 		"@types/node": "^26.4.1",
